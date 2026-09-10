@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Render</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="controls" aria-label="Search controls">
+      <div class="control-group">
+        <label for="rating">Rating</label>
+        <select id="rating" title="Rating search tag">
+          <option value="safe">rating:safe</option>
+          <option value="questionable">rating:questionable</option>
+          <option value="explicit">rating:explicit</option>
+          <option value="any">rating:any</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="order">Order</label>
+        <select id="order" title="Order search tag"></select>
+      </div>
+
+      <div class="search-wrap">
+        <label for="tagInput">Tags / Post ID / URL</label>
+        <input id="tagInput" autocomplete="off" spellcheck="false" placeholder="Insert tags, post ID, or full e621 URL...">
+      </div>
+
+      <div class="actions">
+        <button id="loadBtn" class="primary">Load Tags</button>
+        <button id="copyBtn">Copy Link</button>
+        <button id="openBtn">Open Post</button>
+      </div>
+    </section>
+
+    <section class="viewer" aria-label="Post viewer">
+      <button id="prevBtn" class="nav-btn left" aria-label="Previous post" title="Previous post">←</button>
+      <div id="mediaStage" class="media-stage">
+        <div id="status" class="status-card">Loading e621 posts…</div>
+      </div>
+      <button id="nextBtn" class="nav-btn right" aria-label="Next post" title="Next post">→</button>
+    </section>
+
+    <section class="tags-panel" id="tagsPanel">
+      <button id="tagsToggle" class="tags-toggle" aria-expanded="false">
+        <span>Tags</span><span id="tagsCaret">⏵</span>
+      </button>
+      <div id="tagList" class="tag-list" hidden></div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <dialog id="confirmDialog">
+    <div class="dialog-card">
+      <h2>Open e621 post?</h2>
+      <p id="confirmText"></p>
+      <div class="dialog-actions">
+        <button id="cancelOpen">Cancel</button>
+        <button id="confirmOpen" class="primary">Yes</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>
