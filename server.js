@@ -13,6 +13,20 @@ const E621_BASE = process.env.E621_BASE_URL || 'https://e621.net';
 const USER_AGENT = process.env.E621_USER_AGENT || 'E621PostBrowser/1.1 (by e621-post-browser)';
 const STATIC_ROOT = path.join(__dirname, 'public');
 
+
+
+// TEMPORARY ACCOUNT DIAGNOSTICS
+// Enable with E621_ACCOUNT_DEBUG=true in Render. Never logs the API key itself.
+const ACCOUNT_DEBUG = process.env.E621_ACCOUNT_DEBUG === 'true';
+let accountConfig = null;
+try {
+  accountConfig = require('./account.config.js');
+} catch (err) {
+  if (ACCOUNT_DEBUG) log(`[ACCOUNT DEBUG] account.config.js load failed: ${err.message}`);
+}
+
+
+
 // Keep the UI list synchronized with e621-supported order metatags. "default" is
 // an application-only option and deliberately does not become an API tag.
 const ORDER_VALUES = [
